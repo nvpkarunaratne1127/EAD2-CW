@@ -15,6 +15,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/owner/equipment")
+@CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 @Tag(name = "Owner – Equipment", description = "Gym equipment inventory CRUD (Owner only)")
 public class EquipmentController {

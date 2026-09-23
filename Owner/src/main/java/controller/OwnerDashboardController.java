@@ -3,6 +3,7 @@ package controller;
 import dto.DashboardStatsDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +11,7 @@ import service.OwnerDashboardService;
 
 @RestController
 @RequestMapping("/api/owner/dashboard")
+@CrossOrigin(origins = "*")
 @Tag(name = "Owner – Dashboard", description = "Aggregated KPIs for the owner dashboard")
 public class OwnerDashboardController {
 

@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/workout-plans")
+@CrossOrigin(origins = "*")
 public class WorkoutPlanController {
 
     private final WorkoutPlanService workoutPlanService;

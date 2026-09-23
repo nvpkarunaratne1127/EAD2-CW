@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/owner/invoices")
+@CrossOrigin(origins = "*")
 @Tag(name = "Owner – Invoices", description = "Invoice CRUD and revenue tracking (Owner only)")
 public class InvoiceController {
 
