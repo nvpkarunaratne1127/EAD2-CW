@@ -22,17 +22,23 @@ export default function Navbar({ currentUser, onLogout, activeTab, setActiveTab,
         flexWrap: 'wrap',
         gap: '1rem'
       }}>
-        {/* Zacson Brand Logo */}
+        {/* FitPulse Brand Logo */}
         <div 
           style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', cursor: 'pointer' }} 
           onClick={() => setActiveTab('dashboard')}
         >
-          <img 
-            src="/zacson/logo/logo.png" 
-            alt="FitPulse Zacson Gym" 
-            style={{ height: '36px', objectFit: 'contain' }}
-            onError={(e) => { e.target.style.display = 'none'; }}
-          />
+          <div style={{
+            background: '#FF0000',
+            width: '40px',
+            height: '40px',
+            borderRadius: '2px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxShadow: '0 4px 16px rgba(255, 0, 0, 0.45)'
+          }}>
+            <Dumbbell size={22} color="#FFFFFF" />
+          </div>
           <div>
             <div style={{ 
               fontFamily: "'Oswald', sans-serif", 
@@ -145,7 +151,7 @@ export default function Navbar({ currentUser, onLogout, activeTab, setActiveTab,
             )}
           </div>
         ) : (
-          /* Public Navigation for Non-Logged-In Visitors (Zacson Style) */
+          /* Public Navigation for Non-Logged-In Visitors */
           <div style={{ display: 'flex', gap: '1.25rem', alignItems: 'center' }}>
             <a href="#hero" style={{ color: '#E0E0E0', textDecoration: 'none', fontFamily: "'Oswald', sans-serif", fontSize: '0.88rem', letterSpacing: '1.5px', textTransform: 'uppercase' }}>
               Home

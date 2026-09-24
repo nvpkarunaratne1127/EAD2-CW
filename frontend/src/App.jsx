@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
-import ZacsonLanding from './pages/ZacsonLanding';
+import FitPulseLanding from './pages/FitPulseLanding';
 import Login from './pages/Login';
 import OwnerDashboard from './pages/OwnerDashboard';
 import TrainerDashboard from './pages/TrainerDashboard';
@@ -51,7 +51,7 @@ export default function App() {
 
       <main className="content-wrapper">
         {!currentUser ? (
-          <ZacsonLanding
+          <FitPulseLanding
             onLoginSuccess={handleLoginSuccess}
             onOpenAuthModal={() => setAuthModalOpen(true)}
           />
@@ -143,7 +143,7 @@ export default function App() {
         </div>
       )}
 
-      {/* Zacson Authentic Footer */}
+      {/* FitPulse Footer */}
       <footer style={{
         background: '#080808',
         borderTop: '1px solid #222222',

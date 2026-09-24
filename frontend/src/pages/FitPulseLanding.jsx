@@ -5,7 +5,7 @@ import {
   Check, Zap, Package, ShoppingCart, Award, Sparkles, Lock 
 } from 'lucide-react';
 
-export default function ZacsonLanding({ onLoginSuccess, onOpenAuthModal }) {
+export default function FitPulseLanding({ onLoginSuccess, onOpenAuthModal }) {
   const [equipmentCount, setEquipmentCount] = useState(16);
   const [supplements, setSupplements] = useState([]);
   const [trainers, setTrainers] = useState([]);
@@ -16,9 +16,10 @@ export default function ZacsonLanding({ onLoginSuccess, onOpenAuthModal }) {
   const [pricingPreview, setPricingPreview] = useState(null);
 
   useEffect(() => {
-    // Fetch initial showcase data
+    // Fetch initial showcase data from backend
     api.getTrainers().then(data => setTrainers(data || [])).catch(() => {});
     api.getSupplements().then(data => setSupplements((data || []).slice(0, 4))).catch(() => {});
+    api.getEquipment().then(data => setEquipmentCount((data || []).length)).catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -28,25 +29,25 @@ export default function ZacsonLanding({ onLoginSuccess, onOpenAuthModal }) {
   }, [hasTrainer, hasTreadmill]);
 
   const trainerImages = [
-    '/zacson/gallery/team1.png',
-    '/zacson/gallery/team2.png',
-    '/zacson/gallery/team3.png'
+    '/gym/gallery/team1.png',
+    '/gym/gallery/team2.png',
+    '/gym/gallery/team3.png'
   ];
 
   return (
     <div>
       {/* ========================================================= */}
-      {/* 1. HERO SECTION (Using BG1.png as requested)              */}
+      {/* 1. HERO SECTION (Using BG1.png)                           */}
       {/* ========================================================= */}
-      <section id="hero" className="zacson-hero">
+      <section id="hero" className="fitpulse-hero">
         <div style={{ maxWidth: '850px' }}>
           <span className="section-subtitle">
             // HI, THIS IS FITPULSE GYM &amp; FITNESS CLUB
           </span>
-          <h1 className="zacson-hero-title">
+          <h1 className="fitpulse-hero-title">
             BUILD PERFECT BODY WITH CLEAN DISCIPLINE
           </h1>
-          <p className="zacson-hero-desc">
+          <p className="fitpulse-hero-desc">
             Experience world-class gym facilities, certified 1-on-1 personal coaching, 
             high-grade Olympic equipment, and dynamic membership pricing designed to empower your fitness journey.
           </p>
@@ -65,7 +66,7 @@ export default function ZacsonLanding({ onLoginSuccess, onOpenAuthModal }) {
       </section>
 
       {/* ========================================================= */}
-      {/* 2. TRAINING CATEGORIES (Zacson Style with cat1, cat2)     */}
+      {/* 2. TRAINING CATEGORIES & FACILITIES                       */}
       {/* ========================================================= */}
       <section id="features" style={{ marginBottom: '4rem' }}>
         <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
@@ -76,14 +77,14 @@ export default function ZacsonLanding({ onLoginSuccess, onOpenAuthModal }) {
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '2rem' }}>
           {/* Card 1: Personal Training */}
-          <div className="zacson-feature-card">
+          <div className="fitpulse-feature-card">
             <img 
-              src="/zacson/gallery/cat1.png" 
+              src="/gym/gallery/cat1.png" 
               alt="Personal Training" 
-              className="zacson-feature-img"
+              className="fitpulse-feature-img"
               onError={(e) => { e.target.src = '/BG1.png'; }}
             />
-            <div className="zacson-feature-body">
+            <div className="fitpulse-feature-body">
               <span className="section-subtitle">// 1-ON-1 COACHING</span>
               <h3 style={{ fontSize: '1.4rem', marginBottom: '0.75rem' }}>PERSONAL TRAINING</h3>
               <p style={{ color: '#A0A0A0', fontSize: '0.92rem', marginBottom: '1.25rem' }}>
@@ -97,18 +98,18 @@ export default function ZacsonLanding({ onLoginSuccess, onOpenAuthModal }) {
           </div>
 
           {/* Card 2: Group & Strength Equipment */}
-          <div className="zacson-feature-card">
+          <div className="fitpulse-feature-card">
             <img 
-              src="/zacson/gallery/cat2.png" 
+              src="/gym/gallery/cat2.png" 
               alt="Group Fitness" 
-              className="zacson-feature-img"
+              className="fitpulse-feature-img"
               onError={(e) => { e.target.src = '/BG.png'; }}
             />
-            <div className="zacson-feature-body">
+            <div className="fitpulse-feature-body">
               <span className="section-subtitle">// OLYMPIC EQUIPMENT</span>
               <h3 style={{ fontSize: '1.4rem', marginBottom: '0.75rem' }}>STRENGTH &amp; CONDITIONING</h3>
               <p style={{ color: '#A0A0A0', fontSize: '0.92rem', marginBottom: '1.25rem' }}>
-                Full floor access to competition bumper plates, 45-degree leg press, Smith machines, dumbbells up to 50kg, and dual cable crossovers.
+                Full floor access to {equipmentCount} competition stations, bumper plates, 45-degree leg press, Smith machines, dumbbells up to 50kg, and dual cable crossovers.
               </p>
               <a href="#pricing" className="btn btn-outline btn-sm">
                 SEE MEMBERSHIP ACCESS <ArrowRight size={14} />
@@ -119,7 +120,7 @@ export default function ZacsonLanding({ onLoginSuccess, onOpenAuthModal }) {
       </section>
 
       {/* ========================================================= */}
-      {/* 3. DYNAMIC PRICING SECTION (Zacson Pricing Table)         */}
+      {/* 3. DYNAMIC PRICING SECTION                                */}
       {/* ========================================================= */}
       <section id="pricing" style={{ marginBottom: '4rem' }}>
         <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
@@ -131,7 +132,7 @@ export default function ZacsonLanding({ onLoginSuccess, onOpenAuthModal }) {
           </p>
         </div>
 
-        {/* 3 Pricing Tier Cards (Zacson pricing.html style) */}
+        {/* 3 Pricing Tier Cards */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.75rem', marginBottom: '2.5rem' }}>
           {/* Plan 1: Standard Floor Access */}
           <div className="glass-card" style={{ textAlign: 'center', padding: '2.5rem 1.75rem' }}>
@@ -259,7 +260,7 @@ export default function ZacsonLanding({ onLoginSuccess, onOpenAuthModal }) {
       </section>
 
       {/* ========================================================= */}
-      {/* 4. CERTIFIED TRAINERS (Zacson Team Showcase)              */}
+      {/* 4. CERTIFIED TRAINERS                                     */}
       {/* ========================================================= */}
       <section id="trainers" style={{ marginBottom: '4rem' }}>
         <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
@@ -270,11 +271,11 @@ export default function ZacsonLanding({ onLoginSuccess, onOpenAuthModal }) {
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
           {trainers.map((t, idx) => (
-            <div key={t.id} className="zacson-trainer-card">
+            <div key={t.id} className="fitpulse-trainer-card">
               <img 
                 src={trainerImages[idx % trainerImages.length]} 
                 alt={t.user?.fullName} 
-                className="zacson-trainer-img"
+                className="fitpulse-trainer-img"
                 onError={(e) => { e.target.src = '/BG1.png'; }}
               />
               <div style={{ padding: '1.5rem', textAlign: 'center' }}>

@@ -55,12 +55,19 @@ export default function Login({ onLoginSuccess, onClose }) {
     }}>
       {/* Header Branding */}
       <div style={{ textAlign: 'center', marginBottom: '1.75rem' }}>
-        <img 
-          src="/zacson/logo/logo.png" 
-          alt="Zacson FitPulse Gym" 
-          style={{ height: '48px', objectFit: 'contain', marginBottom: '0.75rem' }}
-          onError={(e) => { e.target.style.display = 'none'; }}
-        />
+        <div style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '54px',
+          height: '54px',
+          borderRadius: '2px',
+          background: '#FF0000',
+          boxShadow: '0 6px 20px rgba(255, 0, 0, 0.45)',
+          marginBottom: '0.85rem'
+        }}>
+          <Dumbbell size={28} color="#FFFFFF" />
+        </div>
         <h1 style={{ 
           fontFamily: "'Oswald', sans-serif", 
           fontSize: '2rem', 
@@ -76,7 +83,7 @@ export default function Login({ onLoginSuccess, onClose }) {
         </span>
       </div>
 
-      {/* Zacson Solid Card */}
+      {/* FitPulse Solid Card */}
       <div className="glass-card" style={{ padding: '2.25rem', position: 'relative' }}>
         {onClose && (
           <button 

@@ -1,12 +1,12 @@
 /* ===================================================================
-   Zacson Gym & Fitness Club Theme
-   Inspired by Colorlib Zacson Template & NIBM EAD02 Coursework
+   FitPulse Gym & Fitness Club Theme
+   NIBM HDSE 26.2FT - Enterprise Application Development 02 (EAD02)
    =================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Roboto:wght@300;400;500;700&display=swap');
 
 :root {
-  /* Zacson Theme Colors */
+  /* FitPulse Theme Colors */
   --bg-main: #060606;
   --bg-surface: #0e0e0e;
   --bg-card: #121212;
@@ -14,7 +14,7 @@
   --border-color: #242424;
   --border-focus: #FF0000;
   
-  /* Signature Zacson Athletic Red */
+  /* Signature FitPulse Athletic Red */
   --primary: #FF0000;
   --primary-hover: #D40000;
   --primary-dark: #990000;
@@ -54,7 +54,7 @@ body {
   min-height: 100vh;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
-  /* Authentic Zacson Front with BG1.png */
+  /* Authentic Front with BG1.png */
   background-image: 
     linear-gradient(rgba(6, 6, 6, 0.75), rgba(6, 6, 6, 0.90)),
     url('/BG1.png');
@@ -64,7 +64,7 @@ body {
   background-attachment: fixed;
 }
 
-/* Headings in Bold Zacson Oswald Typography */
+/* Headings in Bold Oswald Typography */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Oswald', sans-serif;
   text-transform: uppercase;
@@ -116,7 +116,7 @@ h1, h2, h3, h4, h5, h6 {
   flex: 1;
 }
 
-/* Zacson Solid Card */
+/* Solid Card */
 .glass-card {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -134,7 +134,7 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.9), 0 0 15px rgba(255, 0, 0, 0.15);
 }
 
-/* Authentic Zacson Buttons */
+/* Authentic Athletic Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -154,7 +154,7 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
 }
 
-/* Solid Zacson Red Button */
+/* Solid Red Button */
 .btn-primary {
   background: var(--primary);
   color: #FFFFFF;
@@ -180,7 +180,7 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(-2px);
 }
 
-/* Outline Zacson Boxed Button */
+/* Outline Boxed Button */
 .btn-outline {
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.25);
@@ -212,7 +212,7 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: 1px;
 }
 
-/* Sharp Zacson Badges */
+/* Sharp Badges */
 .badge {
   display: inline-flex;
   align-items: center;
@@ -249,7 +249,7 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid rgba(255, 0, 0, 0.35);
 }
 
-/* Zacson Dark Form Controls */
+/* Dark Form Controls */
 .form-group {
   margin-bottom: 1.25rem;
 }
@@ -325,7 +325,7 @@ textarea.form-control {
   background: #171717;
 }
 
-/* Zacson Pricing Card */
+/* Pricing Card */
 .pricing-calculator-card {
   background: #141414;
   border: 1px solid #282828;
@@ -386,8 +386,8 @@ textarea.form-control {
   cursor: pointer;
 }
 
-/* Zacson Hero Banner (Using BG1.png) */
-.zacson-hero {
+/* FitPulse Hero Banner (Using BG1.png) */
+.fitpulse-hero {
   position: relative;
   min-height: 520px;
   display: flex;
@@ -403,7 +403,7 @@ textarea.form-control {
   padding: 4rem 3rem;
 }
 
-.zacson-hero-title {
+.fitpulse-hero-title {
   font-family: 'Oswald', sans-serif;
   font-size: 3.5rem;
   font-weight: 700;
@@ -414,7 +414,7 @@ textarea.form-control {
   margin: 0.75rem 0 1.25rem 0;
 }
 
-.zacson-hero-desc {
+.fitpulse-hero-desc {
   font-size: 1.1rem;
   color: #C0C0C0;
   max-width: 650px;
@@ -422,8 +422,8 @@ textarea.form-control {
   margin-bottom: 2rem;
 }
 
-/* Category Feature Cards (Zacson Style) */
-.zacson-feature-card {
+/* Category Feature Cards */
+.fitpulse-feature-card {
   position: relative;
   overflow: hidden;
   background: #111111;
@@ -431,13 +431,13 @@ textarea.form-control {
   transition: all 0.35s ease;
 }
 
-.zacson-feature-card:hover {
+.fitpulse-feature-card:hover {
   border-color: var(--primary);
   transform: translateY(-4px);
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.9), 0 0 20px rgba(255, 0, 0, 0.2);
 }
 
-.zacson-feature-img {
+.fitpulse-feature-img {
   width: 100%;
   height: 220px;
   object-fit: cover;
@@ -445,29 +445,29 @@ textarea.form-control {
   transition: all 0.4s ease;
 }
 
-.zacson-feature-card:hover .zacson-feature-img {
+.fitpulse-feature-card:hover .fitpulse-feature-img {
   filter: grayscale(0%) contrast(115%);
   transform: scale(1.04);
 }
 
-.zacson-feature-body {
+.fitpulse-feature-body {
   padding: 1.5rem;
 }
 
 /* Trainer Card */
-.zacson-trainer-card {
+.fitpulse-trainer-card {
   background: #121212;
   border: 1px solid #242424;
   overflow: hidden;
   transition: all 0.3s ease;
 }
 
-.zacson-trainer-card:hover {
+.fitpulse-trainer-card:hover {
   border-color: var(--primary);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.9), 0 0 15px rgba(255, 0, 0, 0.15);
 }
 
-.zacson-trainer-img {
+.fitpulse-trainer-img {
   width: 100%;
   height: 280px;
   object-fit: cover;
@@ -477,10 +477,10 @@ textarea.form-control {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .zacson-hero-title {
+  .fitpulse-hero-title {
     font-size: 2.4rem;
   }
-  .zacson-hero {
+  .fitpulse-hero {
     padding: 2.5rem 1.5rem;
     min-height: 420px;
   }
