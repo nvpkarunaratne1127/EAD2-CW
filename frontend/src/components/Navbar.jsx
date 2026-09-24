@@ -1,12 +1,13 @@
 import React from 'react';
-import { Dumbbell, Shield, UserCheck, Users, LogOut, Activity } from 'lucide-react';
+import { Dumbbell, Shield, UserCheck, Users, LogOut, Activity, Lock } from 'lucide-react';
 
-export default function Navbar({ currentUser, onLogout, activeTab, setActiveTab, onQuickSwitchRole }) {
+export default function Navbar({ currentUser, onLogout, activeTab, setActiveTab, onOpenAuth }) {
   return (
     <nav style={{
-      background: 'rgba(12, 12, 16, 0.94)',
-      backdropFilter: 'blur(18px)',
-      borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+      background: 'rgba(8, 8, 8, 0.96)',
+      backdropFilter: 'blur(16px)',
+      borderBottom: '1px solid #222222',
+      borderTop: '2px solid #FF0000',
       position: 'sticky',
       top: 0,
       zIndex: 100
@@ -21,47 +22,54 @@ export default function Navbar({ currentUser, onLogout, activeTab, setActiveTab,
         flexWrap: 'wrap',
         gap: '1rem'
       }}>
-        {/* Brand */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer' }} onClick={() => setActiveTab('dashboard')}>
-          <div style={{
-            background: 'linear-gradient(135deg, #ef4444, #991b1b)',
-            width: '42px',
-            height: '42px',
-            clipPath: 'polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))',
-            borderRadius: '2px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            boxShadow: '0 4px 14px rgba(239, 68, 68, 0.45)'
-          }}>
-            <Dumbbell size={22} color="#ffffff" />
-          </div>
+        {/* Zacson Brand Logo */}
+        <div 
+          style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', cursor: 'pointer' }} 
+          onClick={() => setActiveTab('dashboard')}
+        >
+          <img 
+            src="/zacson/logo/logo.png" 
+            alt="FitPulse Zacson Gym" 
+            style={{ height: '36px', objectFit: 'contain' }}
+            onError={(e) => { e.target.style.display = 'none'; }}
+          />
           <div>
-            <div style={{ fontSize: '1.2rem', fontWeight: 800, letterSpacing: '-0.02em', color: '#f8fafc', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-              FITPULSE <span style={{ color: '#ef4444' }}>GYM</span>
+            <div style={{ 
+              fontFamily: "'Oswald', sans-serif", 
+              fontSize: '1.45rem', 
+              fontWeight: 700, 
+              letterSpacing: '1.5px', 
+              textTransform: 'uppercase', 
+              color: '#FFFFFF', 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '0.4rem',
+              lineHeight: 1
+            }}>
+              FITPULSE <span style={{ color: '#FF0000' }}>GYM</span>
             </div>
-            <div style={{ fontSize: '0.7rem', color: '#a1a1aa', letterSpacing: '0.04em' }}>
-              NIBM HDSE 26.2FT &bull; EAD02
+            <div style={{ fontSize: '0.68rem', color: '#888888', letterSpacing: '2px', textTransform: 'uppercase', marginTop: '3px' }}>
+              NIBM HDSE 26.2FT &bull; EAD02 SYSTEM
             </div>
           </div>
         </div>
 
-        {/* Role-Specific Navigation Links */}
-        {currentUser && (
-          <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+        {/* Navigation Links for Logged-In User */}
+        {currentUser ? (
+          <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
             {currentUser.role === 'OWNER' && (
               <>
                 <button
                   className={`btn btn-sm ${activeTab === 'dashboard' ? 'btn-primary' : 'btn-outline'}`}
                   onClick={() => setActiveTab('dashboard')}
                 >
-                  <Activity size={16} /> Overview
+                  <Activity size={15} /> Overview
                 </button>
                 <button
                   className={`btn btn-sm ${activeTab === 'equipment' ? 'btn-primary' : 'btn-outline'}`}
                   onClick={() => setActiveTab('equipment')}
                 >
-                  <Dumbbell size={16} /> Equipment
+                  <Dumbbell size={15} /> Equipment
                 </button>
                 <button
                   className={`btn btn-sm ${activeTab === 'supplements' ? 'btn-primary' : 'btn-outline'}`}
@@ -90,13 +98,13 @@ export default function Navbar({ currentUser, onLogout, activeTab, setActiveTab,
                   className={`btn btn-sm ${activeTab === 'clients' ? 'btn-primary' : 'btn-outline'}`}
                   onClick={() => setActiveTab('clients')}
                 >
-                  <Users size={16} /> Assigned Clients
+                  <Users size={15} /> Assigned Clients
                 </button>
                 <button
                   className={`btn btn-sm ${activeTab === 'equipment' ? 'btn-primary' : 'btn-outline'}`}
                   onClick={() => setActiveTab('equipment')}
                 >
-                  <Dumbbell size={16} /> Gym Equipment
+                  <Dumbbell size={15} /> Gym Equipment
                 </button>
               </>
             )}
@@ -113,19 +121,19 @@ export default function Navbar({ currentUser, onLogout, activeTab, setActiveTab,
                   className={`btn btn-sm ${activeTab === 'workout' ? 'btn-primary' : 'btn-outline'}`}
                   onClick={() => setActiveTab('workout')}
                 >
-                  My Routine &amp; Diet
+                  Routine &amp; Diet
                 </button>
                 <button
                   className={`btn btn-sm ${activeTab === 'equipment' ? 'btn-primary' : 'btn-outline'}`}
                   onClick={() => setActiveTab('equipment')}
                 >
-                  Equipment Catalog
+                  Equipment
                 </button>
                 <button
                   className={`btn btn-sm ${activeTab === 'supplements' ? 'btn-primary' : 'btn-outline'}`}
                   onClick={() => setActiveTab('supplements')}
                 >
-                  Supplement Store
+                  Supplements
                 </button>
                 <button
                   className={`btn btn-sm ${activeTab === 'invoices' ? 'btn-primary' : 'btn-outline'}`}
@@ -136,31 +144,59 @@ export default function Navbar({ currentUser, onLogout, activeTab, setActiveTab,
               </>
             )}
           </div>
+        ) : (
+          /* Public Navigation for Non-Logged-In Visitors (Zacson Style) */
+          <div style={{ display: 'flex', gap: '1.25rem', alignItems: 'center' }}>
+            <a href="#hero" style={{ color: '#E0E0E0', textDecoration: 'none', fontFamily: "'Oswald', sans-serif", fontSize: '0.88rem', letterSpacing: '1.5px', textTransform: 'uppercase' }}>
+              Home
+            </a>
+            <a href="#features" style={{ color: '#A0A0A0', textDecoration: 'none', fontFamily: "'Oswald', sans-serif", fontSize: '0.88rem', letterSpacing: '1.5px', textTransform: 'uppercase' }}>
+              Facilities
+            </a>
+            <a href="#pricing" style={{ color: '#A0A0A0', textDecoration: 'none', fontFamily: "'Oswald', sans-serif", fontSize: '0.88rem', letterSpacing: '1.5px', textTransform: 'uppercase' }}>
+              Pricing
+            </a>
+            <a href="#trainers" style={{ color: '#A0A0A0', textDecoration: 'none', fontFamily: "'Oswald', sans-serif", fontSize: '0.88rem', letterSpacing: '1.5px', textTransform: 'uppercase' }}>
+              Trainers
+            </a>
+            <a href="#supplements" style={{ color: '#A0A0A0', textDecoration: 'none', fontFamily: "'Oswald', sans-serif", fontSize: '0.88rem', letterSpacing: '1.5px', textTransform: 'uppercase' }}>
+              Supplements
+            </a>
+          </div>
         )}
 
-        {/* User Badge & Logout */}
+        {/* User Profile Badge & Logout / Sign In */}
         {currentUser ? (
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <div style={{ textAlign: 'right' }}>
-              <div style={{ fontSize: '0.85rem', fontWeight: 700, color: '#f8fafc' }}>
+              <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#FFFFFF' }}>
                 {currentUser.fullName}
               </div>
               <span className={`badge ${
-                currentUser.role === 'OWNER' ? 'badge-purple' :
-                currentUser.role === 'TRAINER' ? 'badge-amber' : 'badge-cyan'
+                currentUser.role === 'OWNER' ? 'badge-red' :
+                currentUser.role === 'TRAINER' ? 'badge-amber' : 'badge-emerald'
               }`}>
                 {currentUser.role}
               </span>
             </div>
 
-            <button className="btn btn-outline btn-sm btn-danger" onClick={onLogout} title="Logout">
-              <LogOut size={16} />
+            <button 
+              className="btn btn-outline btn-sm btn-danger" 
+              onClick={onLogout} 
+              title="Logout"
+              style={{ padding: '0.45rem 0.75rem' }}
+            >
+              <LogOut size={15} />
             </button>
           </div>
         ) : (
-          <div style={{ fontSize: '0.85rem', color: '#94a3b8' }}>
-            Please log in
-          </div>
+          <button 
+            className="btn btn-primary btn-sm"
+            onClick={onOpenAuth}
+            style={{ padding: '0.55rem 1.35rem' }}
+          >
+            <Lock size={15} /> Sign In / Demo
+          </button>
         )}
       </div>
     </nav>
