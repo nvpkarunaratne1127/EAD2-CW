@@ -1,0 +1,277 @@
+{
+  "info": {
+    "name": "NIBM HDSE 26.2FT - Gym Management RESTful API",
+    "_postman_id": "78a9c8b7-6b45-48b0-81f1-3d758066f281",
+    "description": "Postman API Collection for NIBM HDSE 26.2FT EAD02 Coursework (Gym Management System). Covers all CRUD operations, dynamic LKR pricing calculation, inventory, and role-based workflows.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Authentication & Users",
+      "item": [
+        {
+          "name": "Login - Owner",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"admin123\"\n}"
+            },
+            "url": { "raw": "http://localhost:8080/api/auth/login", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "auth", "login"] }
+          }
+        },
+        {
+          "name": "Login - Trainer",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"kasun\",\n  \"password\": \"trainer123\"\n}"
+            },
+            "url": { "raw": "http://localhost:8080/api/auth/login", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "auth", "login"] }
+          }
+        },
+        {
+          "name": "Login - Customer",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"kamal\",\n  \"password\": \"customer123\"\n}"
+            },
+            "url": { "raw": "http://localhost:8080/api/auth/login", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "auth", "login"] }
+          }
+        },
+        {
+          "name": "Register Customer",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"sahan\",\n  \"password\": \"pass123\",\n  \"fullName\": \"Sahan Gunasekara\",\n  \"email\": \"sahan@gmail.com\",\n  \"phone\": \"0779988776\",\n  \"role\": \"CUSTOMER\"\n}"
+            },
+            "url": { "raw": "http://localhost:8080/api/auth/register", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "auth", "register"] }
+          }
+        },
+        {
+          "name": "List All Users",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:8080/api/auth/users", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "auth", "users"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Equipment Resource (CRUD)",
+      "item": [
+        {
+          "name": "Get All Equipment",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:8080/api/equipment", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "equipment"] }
+          }
+        },
+        {
+          "name": "Get Equipment by Category (Dumbbells)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:8080/api/equipment?category=DUMBBELL", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "equipment"], "query": [{ "key": "category", "value": "DUMBBELL" }] }
+          }
+        },
+        {
+          "name": "Create Equipment (Machine)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Seated Calf Raise Machine\",\n  \"category\": \"MACHINE\",\n  \"quantity\": 2,\n  \"weightSpecs\": \"Plate-loaded Olympic peg\",\n  \"status\": \"AVAILABLE\",\n  \"description\": \"Soleus isolation calf machine with adjustable knee pads\"\n}"
+            },
+            "url": { "raw": "http://localhost:8080/api/equipment", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "equipment"] }
+          }
+        },
+        {
+          "name": "Update Equipment",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Hex Rubber Dumbbells Rack (Pairs)\",\n  \"category\": \"DUMBBELL\",\n  \"quantity\": 30,\n  \"weightSpecs\": \"Pairs from 2.5kg to 40kg\",\n  \"status\": \"AVAILABLE\",\n  \"description\": \"Updated with additional heavy dumbbell pairs\"\n}"
+            },
+            "url": { "raw": "http://localhost:8080/api/equipment/1", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "equipment", "1"] }
+          }
+        },
+        {
+          "name": "Delete Equipment",
+          "request": {
+            "method": "DELETE",
+            "url": { "raw": "http://localhost:8080/api/equipment/16", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "equipment", "16"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Supplement Resource (CRUD & Orders)",
+      "item": [
+        {
+          "name": "Get All Supplements",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:8080/api/supplements", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "supplements"] }
+          }
+        },
+        {
+          "name": "Filter Supplements (Creatine)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:8080/api/supplements?category=CREATINE", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "supplements"], "query": [{ "key": "category", "value": "CREATINE" }] }
+          }
+        },
+        {
+          "name": "Create Supplement (Whey Protein)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"NitroTech 100% Whey Gold\",\n  \"category\": \"WHEY_PROTEIN\",\n  \"brand\": \"MuscleTech\",\n  \"priceLkr\": 27500.00,\n  \"stockQuantity\": 12,\n  \"servingSize\": \"5.5 lbs / 2.5kg (76 servings)\",\n  \"description\": \"Micro-filtered whey peptides and isolate\"\n}"
+            },
+            "url": { "raw": "http://localhost:8080/api/supplements", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "supplements"] }
+          }
+        },
+        {
+          "name": "Order Supplement (Checkout)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": 5,\n  \"supplementId\": 1,\n  \"quantity\": 2\n}"
+            },
+            "url": { "raw": "http://localhost:8080/api/supplements/order", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "supplements", "order"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Membership & Dynamic LKR Pricing",
+      "item": [
+        {
+          "name": "Calculate Price (Base 2500 LKR)",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "http://localhost:8080/api/memberships/calculate?hasTrainer=false&hasTreadmill=false", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "memberships", "calculate"], "query": [{ "key": "hasTrainer", "value": "false" }, { "key": "hasTreadmill", "value": "false" }] }
+          }
+        },
+        {
+          "name": "Calculate Price (Trainer Addon = 4500 LKR)",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "http://localhost:8080/api/memberships/calculate?hasTrainer=true&hasTreadmill=false", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "memberships", "calculate"], "query": [{ "key": "hasTrainer", "value": "true" }, { "key": "hasTreadmill", "value": "false" }] }
+          }
+        },
+        {
+          "name": "Calculate Price (Trainer + Treadmill = 5500 LKR)",
+          "request": {
+            "method": "POST",
+            "url": { "raw": "http://localhost:8080/api/memberships/calculate?hasTrainer=true&hasTreadmill=true", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "memberships", "calculate"], "query": [{ "key": "hasTrainer", "value": "true" }, { "key": "hasTreadmill", "value": "true" }] }
+          }
+        },
+        {
+          "name": "Subscribe Membership (Customer 5)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": 5,\n  \"trainerId\": 1,\n  \"hasTrainer\": true,\n  \"hasTreadmill\": true\n}"
+            },
+            "url": { "raw": "http://localhost:8080/api/memberships", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "memberships"] }
+          }
+        },
+        {
+          "name": "Get Customer Active Membership",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:8080/api/memberships/customer/5", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "memberships", "customer", "5"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Trainers & Client Assignments",
+      "item": [
+        {
+          "name": "Get All Trainers",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:8080/api/trainers", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "trainers"] }
+          }
+        },
+        {
+          "name": "Get Assigned Clients for Trainer 1",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:8080/api/trainers/1/clients", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "trainers", "1", "clients"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "6. Workout & Diet Plans",
+      "item": [
+        {
+          "name": "Get Workout Plan for Customer 5",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:8080/api/workout-plans/customer/5", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "workout-plans", "customer", "5"] }
+          }
+        },
+        {
+          "name": "Update Workout Plan (Trainer)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"trainerId\": 1,\n  \"customerId\": 5,\n  \"routineNotes\": \"Updated Routine: 4-Day Upper/Lower Split\",\n  \"dietNotes\": \"Target 180g protein, 5g Creatine pre-workout\",\n  \"progressNotes\": \"Bench press 85kg 3x5 achieved!\"\n}"
+            },
+            "url": { "raw": "http://localhost:8080/api/workout-plans", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "workout-plans"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "7. Billing & Invoices",
+      "item": [
+        {
+          "name": "Get System Revenue & Stats",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:8080/api/billing/stats", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "billing", "stats"] }
+          }
+        },
+        {
+          "name": "Get All Invoices (Owner)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:8080/api/billing/invoices", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "billing", "invoices"] }
+          }
+        },
+        {
+          "name": "Get Customer Invoices (Customer 5)",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "http://localhost:8080/api/billing/invoices/customer/5", "protocol": "http", "host": ["localhost"], "port": "8080", "path": ["api", "billing", "invoices", "customer", "5"] }
+          }
+        }
+      ]
+    }
+  ]
+}
